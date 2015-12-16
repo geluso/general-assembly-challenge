@@ -20,4 +20,16 @@ controllers.controller('DetailController', ['$scope', '$routeParams', 'SearchSer
     }
     return true;
   };
+
+  // Adds the current movie to favorites.
+  $scope.addToFavorites = function() {
+    var name = $scope.details.Title;
+    var oid = $scope.details.imdbID;
+
+    SearchService.addFavorite(name, oid).then(function(result) {
+      // Success
+    }, function(error) {
+      // Error
+    });
+  };
 }]);

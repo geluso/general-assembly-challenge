@@ -10,6 +10,14 @@ services.factory('SearchService', ['$http', function($http) {
     return $http.get(OMDB_URL, {params: params});
   };
 
+  search.addFavorite = function(name, oid) {
+    var data = {
+      name: name,
+      oid: oid
+    };
+    return $http.post(FAVORITE_URL, data);
+  };
+
   search.favorites = function() {
     return $http.get(FAVORITE_URL);
   };
