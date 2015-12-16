@@ -1,3 +1,23 @@
 div {
   margin: 1em 0;
 }
+
+#results {
+  clear: both;
+}
+
+#details {
+  display: none;
+}
+
+#poster {
+  height: 200px;
+}
+
+#summary {
+  display: inline-block;
+  margin-top: 0;
+  margin-left: 1em;
+  vertical-align: top;
+  width: 400px;
+}

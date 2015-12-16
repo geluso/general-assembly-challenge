@@ -55,6 +55,10 @@ function buildTable(table, movies) {
     var title = document.createElement("td");
     $(title).text(movie.Title || movie.name)
 
+    $(title).click(function() {
+      showDetails(movie);
+    });
+
     // create a cell and put the favorite link in it.
     var favorite = document.createElement("td");
     var link = buildFavoriteLink(movie);
@@ -69,4 +73,29 @@ function buildTable(table, movies) {
   }
 
   oldBody.replaceWith(body);
+}
+
+function showDetails(movie) {
+  console.log("getting details for", movie);
+
+  // hide the details until all of the new information comes in.
+  $("#details").hide();
+
+  document.getElementById("poster").src = movie.Poster;
+  $("#title").text(movie.Title);
+  $("#year").text(movie.Year);
+
+  var params = {
+    i: movie.imdbID,
+    plot: "short",
+    tomatoes: true
+  };
+
+  $.get(OMDB_URL, params, function(response) {
+    console.log("details", response);
+
+    // update the summary and show all the details.
+    $("#summary").text(response.Plot)
+    $("#details").show();
+  });
 }
