@@ -14,7 +14,8 @@ div {
   visibility: hidden;
 }
 
-#poster {
+#poster-container, #poster {
+  margin-top: 0;
   display: inline-block;
   width: 200px;
 }
