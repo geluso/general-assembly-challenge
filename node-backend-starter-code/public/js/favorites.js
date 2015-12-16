@@ -2,18 +2,19 @@ var FAVORITE_URL = "/favorites";
 
 var favorites = [];
 
-$().ready(function() {
+window.onload = function() {
   // Initialize the favorites table.
   $.get(FAVORITE_URL, buildFavoritesTable);
-});
+};
 
 function buildFavoritesTable(movies) {
   buildTable("#favorites tbody", movies);
 }
 
 function buildTable(table, movies) {
-  var oldBody= $(table);
-  var body = document.createElement("tbody");
+  var table = document.getElementById("favorites");
+  var oldBody = table.getElementsByTagName("tbody")[0];
+  var newBody = document.createElement("tbody");
 
   for (var i = 0; i < movies.length; i++) {
     // create a local variable to make it easy to reference the current movie
@@ -42,9 +43,10 @@ function buildTable(table, movies) {
     row.appendChild(title);
 
     // append the complete row to the table body
-    body.appendChild(row);
+    newBody.appendChild(row);
   }
 
   // Replace the old body with the new body.
-  oldBody.replaceWith(body);
+  table.removeChild(oldBody);
+  table.appendChild(newBody);
 }

@@ -1,17 +1,24 @@
 var FAVORITE_URL = "/favorites";
 var OMDB_URL = "http://www.omdbapi.com/";
 
-$().ready(function() {
+window.onload = function() {
   // Hook up the search button to the search function.
-  $("#search").click(search);
-});
+  var searchButton = document.getElementById("search")
+  searchButton.onclick = search;
+};
 
 // Searches for the current search terms.
 function search() {
-  var terms = $("#terms").val() || "Star Wars";
+  var searchBox = document.getElementById("terms");
+
+  // The user has either entered something, or we run a default search
+  // defined by the placeholder value.
+  var terms = searchBox.value || searchBox.placeholder;
   var params = {s: terms};
 
   $.get(OMDB_URL, params, function(response) {
+    // TODO: handle this error:
+    // {Response: "False", Error: "Movie not found!"}
     buildSearchTable(response.Search);
   });
 }
@@ -29,7 +36,7 @@ function buildSearchTable(movies) {
     var row = document.createElement("tr");
 
     var year = document.createElement("td");
-    $(year).text(movie.Year);
+    year.textContent = movie.Year;
 
     var title = document.createElement("td");
     var titleLink = titleDetailLink(movie);

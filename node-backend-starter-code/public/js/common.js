@@ -3,9 +3,9 @@ function addToFavoritesLink(movie, text) {
   link.href="#" + movie.imdbID;
   link.text = text || "Add";
 
-  $(link).click(function() {
+  link.onclick = function() {
     addFavorite(movie);
-  });
+  };
 
   return link;
 }

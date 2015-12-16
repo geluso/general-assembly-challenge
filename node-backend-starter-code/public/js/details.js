@@ -1,12 +1,12 @@
 var FAVORITE_URL = "/favorites";
 var OMDB_URL = "http://www.omdbapi.com/";
 
-$().ready(function() {
+window.onload = function() {
   var args = document.location.search;
   var id = args.split("id=")[1];
 
   showDetails(id);
-});
+};
 
 function showDetails(id) {
   var params = {
@@ -17,9 +17,10 @@ function showDetails(id) {
 
   $.get(OMDB_URL, params, function(response) {
     document.getElementById("poster").src = response.Poster;
-    $("#year").text("(" + response.Year + ")");
-    $("#title").text(response.Title);
-    $("#summary").text(response.Plot)
+
+    document.getElementById("year").textContent = "(" + response.Year + ")";
+    document.getElementById("title").textContent = response.Title;
+    document.getElementById("summary").textContent = response.Plot;
 
     var favorite = document.getElementById("favorite");
     var favoriteLink = addToFavoritesLink(response, "Add to favorites.");
