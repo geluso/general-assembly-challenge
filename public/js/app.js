@@ -8,11 +8,11 @@ app.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'js/templates/search.html',
       controller: 'SearchController'
     }).
-    when('/favorites.html', {
+    when('/favorites', {
       templateUrl: 'js/templates/favorites.html',
       controller: 'FavoritesController'
     }).
-    when('/details.html', {
+    when('/details', {
       templateUrl: 'js/templates/details.html',
       controller: 'DetailController'
     }).
