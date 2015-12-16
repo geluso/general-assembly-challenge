@@ -14,18 +14,26 @@ div {
   visibility: hidden;
 }
 
-#details {
-  display: none;
-}
-
 #poster {
+  display: inline-block;
   width: 200px;
 }
 
-#summary {
+#details {
+  width: 400px;
   display: inline-block;
+  vertical-align: top;
   margin-top: 0;
   margin-left: 1em;
-  vertical-align: top;
-  width: 400px;
+}
+
+#details .property {
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#details .value {
+  margin-top: 0;
+  margin-bottom: 1em;
 }

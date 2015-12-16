@@ -22,6 +22,8 @@ function showDetails(id) {
     document.getElementById("title").textContent = response.Title;
     document.getElementById("summary").textContent = response.Plot;
 
+    console.log(response);
+
     // Place a link that will add this movie to the list of favorite movies.
     var favorite = document.getElementById("favorite");
     var favoriteLink = addToFavoritesLink(response, "Add to favorites.");
