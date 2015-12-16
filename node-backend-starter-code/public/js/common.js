@@ -12,6 +12,10 @@ function HttpPostJson(url, params, cb) {
 }
 
 function HttpJsonRequest(method, url, params, cb) {
+  // Create default empty params and empty callback if none are provided.
+  params = params || {};
+  cb = cb || function() {};
+
   var httpRequest = new XMLHttpRequest();
   httpRequest.onreadystatechange = HttpResponse;
 
@@ -20,8 +24,15 @@ function HttpJsonRequest(method, url, params, cb) {
     httpRequest.open(method, encodedUrl, true);
     httpRequest.send(null);
   } else if (method === "POST") {
-    httpRequest.setRequestHeader('Content-Type', 'application/json');
     httpRequest.open(method, url, true);
+
+    // Tell the server it should expect JSON
+    httpRequest.setRequestHeader('Content-Type', 'application/json');
+
+    // encode the params as JSON
+    params = JSON.stringify(params);
+
+    // send along the JSON-encoded params
     httpRequest.send(params);
   }
 
@@ -84,6 +95,6 @@ function addFavorite(movie) {
     oid: movie.imdbID
   };
 
-  $.post(FAVORITE_URL, params);
+  HttpPostJson(FAVORITE_URL, params);
 }
 
