@@ -2,6 +2,10 @@ div {
   margin: 1em 0;
 }
 
+table {
+  border: 1px solid gray;
+}
+
 /* Don't show errors unless there are any! */
 #error {
   visibility: hidden;
