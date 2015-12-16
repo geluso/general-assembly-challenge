@@ -18,7 +18,7 @@ services.factory('SearchService', ['$http', function($http) {
     return $http.post(FAVORITE_URL, data);
   };
 
-  search.favorites = function() {
+  search.getFavorites = function() {
     return $http.get(FAVORITE_URL);
   };
 

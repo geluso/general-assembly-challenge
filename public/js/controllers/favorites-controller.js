@@ -5,9 +5,9 @@ controllers.controller('FavoritesController', ['$scope', 'SearchService', functi
 
   $scope.favorites = [];
 
-  SearchService.favorites().then(function(response) {
+  SearchService.getFavorites().then(function(response) {
     $scope.favorites = response.data;
   }, function(error) {
-    
+    // Error
   });
 }]);
