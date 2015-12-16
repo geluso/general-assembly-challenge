@@ -52,8 +52,11 @@ function buildTable(table, movies) {
     // create a new row to put in the table
     var row = document.createElement("tr");
 
+    var year = document.createElement("td");
+    $(year).text(movie.Year);
+
     var title = document.createElement("td");
-    $(title).text(movie.Title)
+    $(title).text(movie.Title);
 
     $(title).click(function() {
       showDetails(movie);
@@ -65,6 +68,7 @@ function buildTable(table, movies) {
     favorite.appendChild(link);
 
     // actually add the cells to the row
+    row.appendChild(year);
     row.appendChild(title);
     row.appendChild(favorite);
 
