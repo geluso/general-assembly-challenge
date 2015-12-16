@@ -1,14 +1,9 @@
 var FAVORITE_URL = "/favorites";
 var OMDB_URL = "http://www.omdbapi.com/";
 
-var favorites = [];
-
 $().ready(function() {
   // Hook up the search button to the search function.
   $("#search").click(search);
-
-  // Initialize the favorites table.
-  $.get(FAVORITE_URL, buildFavoritesTable);
 });
 
 // Searches for the current search terms.
@@ -27,19 +22,13 @@ function addFavorite(movie) {
     oid: movie.imdbID
   };
 
-  $.post(FAVORITE_URL, params, buildFavorites);
+  $.post(FAVORITE_URL, params);
 }
 
 function buildFavoriteLink(movie) {
   var link = document.createElement("a");
-  link.href="#";
-
-  // is this movie already in our favorites?
-  if (favorites.indexOf(movie.imdbID) >= 0) {
-    link.text = "Remove";
-  } else {
-    link.text = "Add";
-  }
+  link.href="#" + movie.imdbID;
+  link.text = "Add";
 
   $(link).click(function() {
     addFavorite(movie);
@@ -50,10 +39,6 @@ function buildFavoriteLink(movie) {
 
 function buildSearchTable(movies) {
   buildTable("#results tbody", movies);
-}
-
-function buildFavoritesTable(movies) {
-  buildTable("#favorites tbody", movies);
 }
 
 function buildTable(table, movies) {

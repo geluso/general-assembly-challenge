@@ -1,18 +1,18 @@
 <html>
   <head>
-    <title>Movie Search</title>
+    <title>OMDB Search</title>
     <link href="style.css" rel="stylesheet"></link>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="js/omdb-search.js"></script>
+    <script src="js/search.js"></script>
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <h1>OMDB Search</h1>
     <p>
       <input id="terms" type="text" placeholder="Star Wars"></input>
       <button id="search">Search</button>
     </p>
 
-    <div>
+    <div id="results">
       <table id="results" border="1">
         <thead>
           <tr>
@@ -26,16 +26,7 @@
     </div>
 
     <div>
-      <table id="favorites" border="1">
-        <thead>
-          <tr>
-            <td>Title</td>
-            <td>Favorite</td>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+      <a href="favorites.html">See Favorites</a>
     </div>
   </body>
 </html>
