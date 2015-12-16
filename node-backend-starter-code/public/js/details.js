@@ -23,24 +23,8 @@ function showDetails(id) {
     $("#title").text(response.Title);
     $("#summary").text(response.Plot)
 
-    buildFavoriteLink(response);
+    var favorite = document.getElementById("favorite");
+    var favoriteLink = addToFavoritesLink(response, "Add to favorites.");
+    favorite.appendChild(favoriteLink);
   });
 }
-
-function buildFavoriteLink(movie) {
-  var link = document.getElementById("favorite");
-  link.href = "#" + movie.imdbID;
-  $(link).click(function() {
-    addFavorite(movie);
-  });
-}
-
-function addFavorite(movie) {
-  var params = {
-    name: movie.Title,
-    oid: movie.imdbID
-  };
-
-  $.post(FAVORITE_URL, params);
-}
-

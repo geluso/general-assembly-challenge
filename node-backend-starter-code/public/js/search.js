@@ -16,42 +16,9 @@ function search() {
   });
 }
 
-function addFavorite(movie) {
-  var params = {
-    name: movie.Title,
-    oid: movie.imdbID
-  };
-
-  $.post(FAVORITE_URL, params);
-}
-
-function buildTitleLink(movie) {
-  var link = document.createElement("a");
-  link.href = "details.html?id=" + movie.imdbID;
-  link.text = movie.Title;
-
-  return link;
-}
-
-function buildFavoriteLink(movie) {
-  var link = document.createElement("a");
-  link.href="#" + movie.imdbID;
-  link.text = "Add";
-
-  $(link).click(function() {
-    addFavorite(movie);
-  });
-
-  return link;
-}
-
 function buildSearchTable(movies) {
-  buildTable("#results tbody", movies);
-}
-
-function buildTable(table, movies) {
-  var oldBody= $(table);
-  var body = document.createElement("tbody");
+  var oldBody= $("#results tbody");
+  var newBody = document.createElement("tbody");
 
   for (var i = 0; i < movies.length; i++) {
     // create a local variable to make it easy to reference the current movie
@@ -64,12 +31,12 @@ function buildTable(table, movies) {
     $(year).text(movie.Year);
 
     var title = document.createElement("td");
-    var titleLink = buildTitleLink(movie);
+    var titleLink = titleDetailLink(movie);
     title.appendChild(titleLink);
 
     // create a cell and put the favorite link in it.
     var favorite = document.createElement("td");
-    var favoriteLink = buildFavoriteLink(movie);
+    var favoriteLink = addToFavoritesLink(movie)
     favorite.appendChild(favoriteLink);
 
     // actually add the cells to the row
@@ -78,33 +45,8 @@ function buildTable(table, movies) {
     row.appendChild(favorite);
 
     // append the complete row to the table body
-    body.appendChild(row);
+    newBody.appendChild(row);
   }
 
-  oldBody.replaceWith(body);
-}
-
-function showDetails(movie) {
-  console.log("getting details for", movie);
-
-  // hide the details until all of the new information comes in.
-  $("#details").hide();
-
-  document.getElementById("poster").src = movie.Poster;
-  $("#title").text(movie.Title);
-  $("#year").text(movie.Year);
-
-  var params = {
-    i: movie.imdbID,
-    plot: "short",
-    tomatoes: true
-  };
-
-  $.get(OMDB_URL, params, function(response) {
-    console.log("details", response);
-
-    // update the summary and show all the details.
-    $("#summary").text(response.Plot)
-    $("#details").show();
-  });
+  oldBody.replaceWith(newBody);
 }
