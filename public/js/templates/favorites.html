@@ -14,6 +14,8 @@
 
 <ul>
   <li ng-repeat="favorite in favorites">
-    {{favorite.name}}
+    <a href="/#/details/{{favorite.oid}}/">
+      {{favorite.name}}
+    </a>
   </li>
 </ul>
