@@ -1,12 +1,25 @@
 <h1>
-  <span id="year"></span>
-  <span id="title"></span>
+  ({{details.Year}}) {{details.Title}}
 </h1>
 
 
 <div id="poster-container">
-  <img id="poster" />
-  <p id="favorite"></p>
+  <img ng-src="{{details.Poster}}"/>
+  <p>
+    <a href="#" ng-click="addToFavorites()">
+    Add to favorites
+    </a>
+  </p>
 </div>
 
-<div id="details"></div>
+<div id="details">
+  <div>
+    <p class="property">Plot</p>
+    <p class="value">{{details.Plot}}</p>
+  </div>
+
+  <div ng-repeat="(property, value) in details" ng-if="isPropertyDisplayable(property)">
+    <p class="property">{{property}}</p>
+    <p class="value">{{value}}</p>
+  </div>
+</div>

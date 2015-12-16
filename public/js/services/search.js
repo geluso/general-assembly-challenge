@@ -11,5 +11,14 @@ services.factory('SearchService', ['$http', function($http) {
     return $http.get(FAVORITE_URL);
   };
 
+  search.getDetails = function(id) {
+    var params = {
+      i: id,
+      plot: "full",
+      tomatoes: true
+    };
+    return $http.get(OMDB_URL, {params: params});
+  };
+
   return search;
 }]);

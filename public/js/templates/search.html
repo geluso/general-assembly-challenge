@@ -27,6 +27,8 @@
 
 <ol>
   <li ng-repeat="result in results">
-    ({{result.Year}}) {{result.Title}}
+    <a href="/#/details/{{result.imdbID}}">
+      ({{result.Year}}) {{result.Title}}
+    </a>
   </li>
 </ol>

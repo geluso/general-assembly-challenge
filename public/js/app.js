@@ -12,7 +12,7 @@ app.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'js/templates/favorites.html',
       controller: 'FavoritesController'
     }).
-    when('/details', {
+    when('/details/:id', {
       templateUrl: 'js/templates/details.html',
       controller: 'DetailController'
     }).
