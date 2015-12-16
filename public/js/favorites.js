@@ -1,7 +1,3 @@
-var FAVORITE_URL = "/favorites";
-
-var favorites = [];
-
 window.onload = function() {
   // Initialize the favorites table.
   HttpGetJson(FAVORITE_URL, {}, buildFavoritesTable);
