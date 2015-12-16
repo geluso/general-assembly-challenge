@@ -1,4 +1,6 @@
-var app = angular.module('searchApp', ['ngRoute']);
+var app = angular.module('searchApp', [
+  'ngRoute'
+]);
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.

@@ -1,7 +1,7 @@
 window.onload = function() {
   // Hook up the search button to the search function.
   var searchButton = document.getElementById("search")
-  searchButton.onclick = search;
+  //searchButton.onclick = search;
 };
 
 // Searches for the current search terms.
