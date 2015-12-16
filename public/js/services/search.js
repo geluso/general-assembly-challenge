@@ -1,5 +1,8 @@
 var services = angular.module('searchApp');
 services.factory('SearchService', ['$http', function($http) {
+  var FAVORITE_URL = "/favorites";
+  var OMDB_URL = "https://www.omdbapi.com/";
+
   var search = {};
 
   search.search = function(terms) {
