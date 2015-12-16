@@ -4,7 +4,9 @@
   <button ng-click="search(terms)">Search</button>
 </p>
 
-<div id="error"></div>
+<div ng-if="error" class="error">
+  {{error}}
+</div>
 
 <ol>
   <li ng-repeat="result in results">
