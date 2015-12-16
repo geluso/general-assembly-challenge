@@ -17,7 +17,8 @@ function search() {
 }
 
 function buildSearchTable(movies) {
-  var oldBody= $("#results tbody");
+  var table = document.getElementById("results");
+  var oldBody= table.getElementsByTagName("tbody")[0];
   var newBody = document.createElement("tbody");
 
   for (var i = 0; i < movies.length; i++) {
@@ -48,5 +49,7 @@ function buildSearchTable(movies) {
     newBody.appendChild(row);
   }
 
-  oldBody.replaceWith(newBody);
+  table.removeChild(oldBody);
+  table.appendChild(newBody);
+  table.style.visibility = "visible";
 }

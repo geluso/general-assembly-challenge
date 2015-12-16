@@ -2,8 +2,10 @@ div {
   margin: 1em 0;
 }
 
+/* Prevent the search results from being displayed before
+   there are any there. */
 #results {
-  clear: both;
+  visibility: hidden;
 }
 
 #details {
