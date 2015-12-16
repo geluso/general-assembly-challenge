@@ -1,17 +1,6 @@
-div {
-  margin: 1em 0;
-}
-
-/* Don't show errors unless there are any! */
-#error {
-  visibility: hidden;
+/* Make all error text red. */
+.error {
   color: red;
-}
-
-/* Prevent the search results from being displayed before
-   there are any there. */
-#results {
-  visibility: hidden;
 }
 
 #poster-container {
@@ -20,16 +9,14 @@ div {
   width: 25%;
 }
 
-#poster {
-  width: 100%;
+#poster-container img {
+  width: 95%;
 }
 
 #details {
   width: 70%;
   display: inline-block;
   vertical-align: top;
-  margin-top: 0;
-  margin-left: 1em;
 }
 
 #details .property {
