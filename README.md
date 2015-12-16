@@ -74,6 +74,9 @@ allows users to immediately add a movie to their favorites.
 The top nav bar exists on every page and allows users to immediately navigate to the
 search page and the favorites page.
 
+This implementation represents a good functional skeleton for designers to build on top of.
+Everything is left without much CSS so a designer can come in and polish it up.
+
 ### Redundancy
 
 Each page has it's own javascript file that acts as a controller for that page. There's
@@ -154,10 +157,6 @@ Before anyone used too much Angular I would recommend they spend some time with 
 and make sure they have definitely mastered Vanilla Javascript.
 
 ### Final Notes
-
-I'm satisfied with this implementation. The site could use additional UX and visual design,
-but the code is solid. This implementation represents a good functional skeleton for designers
-to build on top of.
 
 I'm happy to hear and discuss any feedback. Thank you for taking the time to read through
 this README and examine my work.
