@@ -1,6 +1,3 @@
-var FAVORITE_URL = "/favorites";
-var OMDB_URL = "http://www.omdbapi.com/";
-
 window.onload = function() {
   var args = document.location.search;
   var id = args.split("id=")[1];

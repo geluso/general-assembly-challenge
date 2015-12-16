@@ -1,6 +1,3 @@
-var FAVORITE_URL = "/favorites";
-var OMDB_URL = "http://www.omdbapi.com/";
-
 window.onload = function() {
   // Hook up the search button to the search function.
   var searchButton = document.getElementById("search")

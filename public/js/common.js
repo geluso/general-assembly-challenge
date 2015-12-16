@@ -1,3 +1,6 @@
+var FAVORITE_URL = "/favorites";
+var OMDB_URL = "https://www.omdbapi.com/";
+
 function encode(url, params) {
   var encodedUrl = url + "?";
   for (var key in params) {
