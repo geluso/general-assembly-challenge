@@ -16,16 +16,43 @@ function search() {
   var terms = searchBox.value || searchBox.placeholder;
   var params = {s: terms};
 
+  // Hide all previous errors or search results.
+  hideErrors();
+  clearSearchResults();
+
   $.get(OMDB_URL, params, function(response) {
-    // TODO: handle this error:
-    // {Response: "False", Error: "Movie not found!"}
-    buildSearchTable(response.Search);
+    if (response.Response === "False") {
+      showError(response.Error);
+    } else {
+      buildSearchTable(response.Search);
+    }
   });
+}
+
+function hideErrors() {
+  var error = document.getElementById("error");
+  error.style.visibility = "hidden";
+}
+
+function showError(errorText) {
+  var errorDiv = document.getElementById("error");
+  errorDiv.textContent = errorText;
+  errorDiv.style.visibility = "visible";
+}
+
+function clearSearchResults() {
+  var table = document.getElementById("results");
+  var oldBody = table.getElementsByTagName("tbody")[0];
+
+  // Check to see if the table ever really had an old body.
+  if (oldBody) {
+    table.removeChild(oldBody);
+    table.style.visibility = "hidden";
+  }
 }
 
 function buildSearchTable(movies) {
   var table = document.getElementById("results");
-  var oldBody= table.getElementsByTagName("tbody")[0];
   var newBody = document.createElement("tbody");
 
   for (var i = 0; i < movies.length; i++) {
@@ -56,7 +83,6 @@ function buildSearchTable(movies) {
     newBody.appendChild(row);
   }
 
-  table.removeChild(oldBody);
   table.appendChild(newBody);
   table.style.visibility = "visible";
 }
