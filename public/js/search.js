@@ -26,37 +26,42 @@ function search() {
   });
 }
 
+// Hides the div containing error messages.
 function hideErrors() {
   var error = document.getElementById("error");
   error.style.visibility = "hidden";
 }
 
+// Displays the given error text.
 function showError(errorText) {
   var errorDiv = document.getElementById("error");
   errorDiv.textContent = errorText;
   errorDiv.style.visibility = "visible";
 }
 
+// Hides the table containing search results.
 function clearSearchResults() {
   var table = document.getElementById("results");
   var oldBody = table.getElementsByTagName("tbody")[0];
 
-  // Check to see if the table ever really had an old body.
+  // Prevent the table from removing it's body if it's body
+  // has already been removed from a previous empty search or error.
   if (oldBody) {
     table.removeChild(oldBody);
     table.style.visibility = "hidden";
   }
 }
 
+// Populates the search results table.
 function buildSearchTable(movies) {
   var table = document.getElementById("results");
   var newBody = document.createElement("tbody");
 
   for (var i = 0; i < movies.length; i++) {
-    // create a local variable to make it easy to reference the current movie
+    // Create a local variable to make it easy to reference the current movie.
     var movie = movies[i];
 
-    // create a new row to put in the table
+    // Create a new row to put in the table.
     var row = document.createElement("tr");
 
     var year = document.createElement("td");
@@ -66,20 +71,21 @@ function buildSearchTable(movies) {
     var titleLink = titleDetailLink(movie);
     title.appendChild(titleLink);
 
-    // create a cell and put the favorite link in it.
+    // Create a cell and put the favorite link in it.
     var favorite = document.createElement("td");
     var favoriteLink = addToFavoritesLink(movie)
     favorite.appendChild(favoriteLink);
 
-    // actually add the cells to the row
+    // Actually add the cells to the row.
     row.appendChild(year);
     row.appendChild(title);
     row.appendChild(favorite);
 
-    // append the complete row to the table body
+    // Append the complete row to the table body.
     newBody.appendChild(row);
   }
 
+  // Insert the new table body into the table and show the results.
   table.appendChild(newBody);
   table.style.visibility = "visible";
 }

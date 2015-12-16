@@ -29,17 +29,17 @@ function HttpJsonRequest(method, url, params, cb) {
     // Tell the server it should expect JSON
     httpRequest.setRequestHeader('Content-Type', 'application/json');
 
-    // encode the params as JSON
+    // Encode the params as JSON.
     params = JSON.stringify(params);
 
-    // send along the JSON-encoded params
+    // Send along the JSON-encoded params.
     httpRequest.send(params);
   }
 
   function HttpResponse(response) {
     if (httpRequest.readyState === XMLHttpRequest.DONE) {
       if (httpRequest.status === 200) {
-        // parse the server response as JSON
+        // Parse the server response as JSON.
         var json = JSON.parse(httpRequest.responseText);
 
         // Call the callback and pass the JSON to it.
@@ -58,7 +58,18 @@ function HttpJsonRequest(method, url, params, cb) {
   }
 }
 
+/*
+ * Encodes given params on to the end of a URL.
+ * url: "http://google.com"
+ * params: {type: "images", terms: "hot dog"}
+ * returns "http://google.com?type=images&terms=hot%20dog&
+ */
 function encode(url, params) {
+  // If there no params then simply return the original URL.
+  if (!params) {
+    return url;
+  }
+
   var encodedUrl = url + "?";
   for (var key in params) {
     encodedUrl += encodeURI(key) + "=";

@@ -13,12 +13,11 @@ function buildTable(table, movies) {
   var newBody = document.createElement("tbody");
 
   for (var i = 0; i < movies.length; i++) {
-    // create a local variable to make it easy to reference the current movie
+    // Create a local variable to make it easy to reference the current movie.
     var movie = movies[i];
 
-    // create a new row to put in the table
+    // Create a new row to put in the table.
     var row = document.createElement("tr");
-
 
     // Our own database stores movies differently than OMDB.
     // We must create a new movie object in the format that our
@@ -30,15 +29,15 @@ function buildTable(table, movies) {
       imdbID: movie.oid
     };
 
-    // Create the link to the movies detail page.
+    // Add a link to the movies detail page.
     var title = document.createElement("td");
     var titleLink = titleDetailLink(omdbMovie);
     title.appendChild(titleLink);
 
-    // actually add the cells to the row
+    // Add the cell to the row.
     row.appendChild(title);
 
-    // append the complete row to the table body
+    // Append the row to the table body.
     newBody.appendChild(row);
   }
 
