@@ -53,7 +53,7 @@ function buildTable(table, movies) {
     var row = document.createElement("tr");
 
     var title = document.createElement("td");
-    $(title).text(movie.Title || movie.name)
+    $(title).text(movie.Title)
 
     $(title).click(function() {
       showDetails(movie);

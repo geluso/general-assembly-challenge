@@ -23,7 +23,7 @@ function buildTable(table, movies) {
     var row = document.createElement("tr");
 
     var title = document.createElement("td");
-    $(title).text(movie.Title || movie.name)
+    $(title).text(movie.name)
 
     // actually add the cells to the row
     row.appendChild(title);
