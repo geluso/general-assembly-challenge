@@ -25,6 +25,14 @@ function addFavorite(movie) {
   $.post(FAVORITE_URL, params);
 }
 
+function buildTitleLink(movie) {
+  var link = document.createElement("a");
+  link.href = "details.html?id=" + movie.imdbID;
+  link.text = movie.Title;
+
+  return link;
+}
+
 function buildFavoriteLink(movie) {
   var link = document.createElement("a");
   link.href="#" + movie.imdbID;
@@ -56,16 +64,13 @@ function buildTable(table, movies) {
     $(year).text(movie.Year);
 
     var title = document.createElement("td");
-    $(title).text(movie.Title);
-
-    $(title).click(function() {
-      showDetails(movie);
-    });
+    var titleLink = buildTitleLink(movie);
+    title.appendChild(titleLink);
 
     // create a cell and put the favorite link in it.
     var favorite = document.createElement("td");
-    var link = buildFavoriteLink(movie);
-    favorite.appendChild(link);
+    var favoriteLink = buildFavoriteLink(movie);
+    favorite.appendChild(favoriteLink);
 
     // actually add the cells to the row
     row.appendChild(year);
