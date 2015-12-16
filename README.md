@@ -4,8 +4,12 @@ Hello and welcome to my response to the instructor code challenge.
 I had fun making all of this and I hope you enjoy taking time to
 read through my response.
 
-First, let's get to the point. Here's my basic Vanilla Javascript
-solution [live on Heroku](https://serene-forest-5831.herokuapp.com/).
+There are two branches in this repo and two responses to this challange.
+The first is a Vanilla Javascript solution that exists on the master branch.
+The second is an Angular solution that exists on the angular branch.
+
+- [live Vanilla Javascript site](https://serene-forest-5831.herokuapp.com/).
+- [live Angular site](https://omdb-challenge-angular.herokuapp.com/).
 
 ### Initial Bug Fixes
 
@@ -90,6 +94,57 @@ I based everything on.
 I left comments and notes throughout the code so anyone reading through it may
 easily understand what is going on. Furthermore, the organization of the project files,
 the names of variables, and the names of methods all strive to be sensible.
+
+### Bonus Angular Response
+
+Converting the application to Angular introduced a solid HTTP library, a template system,
+and automatic DOM manipulation.
+
+The $http library Angular provides makes me more confident network requests won't fail due
+to encoding issues. In the Vanilla Javascript application I had to manually encode network
+requests myself.
+
+Angular's template system reduces the redundancy of the HTML files. Now there is one
+[index.html](https://github.com/geluso/general-assembly-challenge/blob/angular/public/index.html)
+file that defines the structure for the entire site. Now the
+[template directory](https://github.com/geluso/general-assembly-challenge/tree/angular/public/js/templates)
+includes small HTML files that define the unique parts of the search, detail and favorite pages.
+Using this template system will make it easier to maintain and modify the site.
+
+Two-way data binding is perhaps my favorite Angular feature. Each view has a $scope
+variable where data can be attached. Anything on the $scope is accessible in the view
+and in the controller. This makes it easy to read search input and relay it to the API.
+Conversely, it's easy to bind search results to the view and define how they should be displayd.
+Using Angular's two-way data binding allowed me to rip out literally all of the old
+DOM manipulation code.
+
+It's also worth pointing out the simplicity of the new
+[ApiService](https://github.com/geluso/general-assembly-challenge/blob/angular/public/js/services/api.js).
+This one file encapsulates the entire API of our backend. Angular's $http module
+and use of promises made it easy to define how out applicaton should interact with
+the server.
+
+### Bonus Discussion of Angular's Pitfalls
+
+Angular is not without it's pitfalls. The framework is hard to learn, and not easy to
+remember. It took me a long time to get things up and running. Learning the difference
+between Controllers and Services and getting into Directives is all difficult.
+
+Angular is hard to debug. The framework is notorious for spitting out inscrutible error
+messages. I specifically used an unminified version of Angular so the error messages would
+be more clear.
+
+Notice that the design of the search results and the favorites list changes between the
+Vanilla Javascript implementation and the Angular implementation. Angular's ng-repeat
+directive has trouble repeating over items in a row. I replaced the tables with lists
+to get around this embarrassing pitfall.
+
+Angular is a great library to use for people that have extensive experience with web
+development. It offers a lot of power, but it can quickly spin wildly out of control.
+Understanding Angular requires understanding other hard-to-understand concepts, like
+[Promises](https://docs.angularjs.org/api/ng/service/$q).
+Before anyone used too much Angular I would recommend they spend some time with jQuery,
+and make sure they have definitely mastered Vanilla Javascript.
 
 ### Final Notes
 
