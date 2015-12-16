@@ -15,7 +15,7 @@ function showDetails(id) {
     tomatoes: true
   };
 
-  $.get(OMDB_URL, params, function(response) {
+  HttpGetJson(OMDB_URL, params, function(response) {
     document.getElementById("poster").src = response.Poster;
 
     document.getElementById("year").textContent = "(" + response.Year + ")";

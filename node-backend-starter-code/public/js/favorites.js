@@ -4,7 +4,7 @@ var favorites = [];
 
 window.onload = function() {
   // Initialize the favorites table.
-  $.get(FAVORITE_URL, buildFavoritesTable);
+  HttpGetJson(FAVORITE_URL, {}, buildFavoritesTable);
 };
 
 function buildFavoritesTable(movies) {

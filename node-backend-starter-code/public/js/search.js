@@ -20,7 +20,7 @@ function search() {
   hideErrors();
   clearSearchResults();
 
-  $.get(OMDB_URL, params, function(response) {
+  HttpGetJson(OMDB_URL, params, function(response) {
     if (response.Response === "False") {
       showError(response.Error);
     } else {
