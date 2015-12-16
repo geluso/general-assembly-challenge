@@ -22,8 +22,21 @@ function buildTable(table, movies) {
     // create a new row to put in the table
     var row = document.createElement("tr");
 
+
+    // Our own database stores movies differently than OMDB.
+    // We must create a new movie object in the format that our
+    // common functions can interact with uniformly.
+    // 
+    // Look at common.js:titleDetailLink to see what it expects.
+    var omdbMovie = {
+      Title: movie.name,
+      imdbID: movie.oid
+    };
+
+    // Create the link to the movies detail page.
     var title = document.createElement("td");
-    $(title).text(movie.name)
+    var titleLink = titleDetailLink(omdbMovie);
+    title.appendChild(titleLink);
 
     // actually add the cells to the row
     row.appendChild(title);
@@ -32,5 +45,6 @@ function buildTable(table, movies) {
     body.appendChild(row);
   }
 
+  // Replace the old body with the new body.
   oldBody.replaceWith(body);
 }
