@@ -7,5 +7,9 @@ services.factory('SearchService', ['$http', function($http) {
     return $http.get(OMDB_URL, {params: params});
   };
 
+  search.favorites = function() {
+    return $http.get(FAVORITE_URL);
+  };
+
   return search;
 }]);
