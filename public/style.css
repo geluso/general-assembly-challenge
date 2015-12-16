@@ -14,14 +14,18 @@ div {
   visibility: hidden;
 }
 
-#poster-container, #poster {
+#poster-container {
   margin-top: 0;
   display: inline-block;
-  width: 200px;
+  width: 25%;
+}
+
+#poster {
+  width: 100%;
 }
 
 #details {
-  width: 400px;
+  width: 70%;
   display: inline-block;
   vertical-align: top;
   margin-top: 0;
