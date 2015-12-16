@@ -4,7 +4,7 @@ var app = angular.module('searchApp', [
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
-    when('/', {
+    when('/search', {
       templateUrl: 'js/templates/search.html',
       controller: 'SearchController'
     }).
@@ -17,6 +17,7 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'DetailController'
     }).
     otherwise({
-      redirectTo: '/'
+      templateUrl: 'js/templates/search.html',
+      controller: 'SearchController'
     });
 }]);
