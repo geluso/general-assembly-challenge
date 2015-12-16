@@ -1,12 +1,12 @@
 var controllers = angular.module('searchApp');
 
-controllers.controller('DetailController', ['$scope', '$routeParams', 'SearchService',
-    function($scope, $routeParams, SearchService) {
+controllers.controller('DetailController', ['$scope', '$routeParams', 'ApiService',
+    function($scope, $routeParams, ApiService) {
   // Obtain the movie ID from the route params.
   var id = $routeParams.id;
 
   // Use the API to look up movie details.
-  SearchService.getDetails(id).then(function(response) {
+  ApiService.getDetails(id).then(function(response) {
     $scope.details = response.data;
   });
 
@@ -26,7 +26,7 @@ controllers.controller('DetailController', ['$scope', '$routeParams', 'SearchSer
     var name = $scope.details.Title;
     var oid = $scope.details.imdbID;
 
-    SearchService.addFavorite(name, oid).then(function(result) {
+    ApiService.addFavorite(name, oid).then(function(result) {
       // Success
     }, function(error) {
       // Error
