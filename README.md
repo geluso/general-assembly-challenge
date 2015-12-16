@@ -45,6 +45,13 @@ with descriptions and stabily.
 
 ### UX Design Decisions
 
+> EDIT: Oops, I didn't see the "single-page app" requirement until double-checking the
+requirements at the end of the night when I finished this all (including bonus work).
+The Vanilla Javascript page is split across three HTML pages that all share the same design.
+I hope my implementation still shows enough technical merit and sensible usability that the app
+follows the spirit of the challenge.
+> (The Angular app is naturally a single-page app.)
+
 This challenge didn't come with exact specs of how the site should look. I made some
 personal designs about the layout of the site. I split the site into three pages:
 
