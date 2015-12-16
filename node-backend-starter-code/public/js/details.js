@@ -16,8 +16,6 @@ function showDetails(id) {
   };
 
   $.get(OMDB_URL, params, function(response) {
-    console.log("details", response);
-
     document.getElementById("poster").src = response.Poster;
     $("#year").text("(" + response.Year + ")");
     $("#title").text(response.Title);
