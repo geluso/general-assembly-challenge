@@ -1,48 +1,87 @@
+var FAVORITE_URL = "/favorites";
 var OMDB_URL = "http://www.omdbapi.com/";
 
+var favorites = [];
+
 $().ready(function() {
-  $("#search").click(function(element) {
-    var terms = $("#terms").val() || "Star Wars";
-    search(terms);
-  });
+  // Hook up the search button to the search function.
+  $("#search").click(search);
+
+  // Initialize the favorites table.
+  $.get(FAVORITE_URL, buildFavoritesTable);
 });
 
+// Searches for the current search terms.
+function search() {
+  var terms = $("#terms").val() || "Star Wars";
+  var params = {s: terms};
 
-function search(terms) {
-  var oldBody= $("#results tbody");
-  var body = document.createElement("tbody");
+  $.get(OMDB_URL, params, function(response) {
+    buildSearchTable(response.Search);
+  });
+}
 
-  $.get(OMDB_URL, {s: terms}, function(response) {
-    var results = response.Search;
+function addFavorite(movie) {
+  var params = {
+    name: movie.Title,
+    oid: movie.imdbID
+  };
 
-    for (var i = 0; i < results.length; i++) {
-      // create a local variable to make it easy to reference our current result
-      var result = results[i];
+  $.post(FAVORITE_URL, params, buildFavorites);
+}
 
-      // log the current result as a sanity check for now.
-      console.log(result.Year, result.Title);
+function buildFavoriteLink(movie) {
+  var link = document.createElement("a");
+  link.href="#";
 
-      // create a new row to put in the table
-      var row = document.createElement("tr");
+  // is this movie already in our favorites?
+  if (favorites.indexOf(movie.imdbID) >= 0) {
+    link.text = "Remove";
+  } else {
+    link.text = "Add";
+  }
 
-      // create the cells to put in each row
-      // note: these new elements must be wrapped as jquery objects
-      var year = document.createElement("td");
-      $(year).text(result.Year);
-
-      var title = document.createElement("td");
-      $(title).text(result.Title)
-
-      // actually add the cells to the row
-      row.appendChild(year);
-      row.appendChild(title);
-
-      // append the complete row to the table body
-      body.appendChild(row);
-    }
-
-    // replace the entire contents of the old table with the new table
-    oldBody.replaceWith(body);
+  $(link).click(function() {
+    addFavorite(movie);
   });
 
+  return link;
+}
+
+function buildSearchTable(movies) {
+  buildTable("#results tbody", movies);
+}
+
+function buildFavoritesTable(movies) {
+  buildTable("#favorites tbody", movies);
+}
+
+function buildTable(table, movies) {
+  var oldBody= $(table);
+  var body = document.createElement("tbody");
+
+  for (var i = 0; i < movies.length; i++) {
+    // create a local variable to make it easy to reference the current movie
+    var movie = movies[i];
+
+    // create a new row to put in the table
+    var row = document.createElement("tr");
+
+    var title = document.createElement("td");
+    $(title).text(movie.Title || movie.name)
+
+    // create a cell and put the favorite link in it.
+    var favorite = document.createElement("td");
+    var link = buildFavoriteLink(movie);
+    favorite.appendChild(link);
+
+    // actually add the cells to the row
+    row.appendChild(title);
+    row.appendChild(favorite);
+
+    // append the complete row to the table body
+    body.appendChild(row);
+  }
+
+  oldBody.replaceWith(body);
 }
